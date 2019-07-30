@@ -4,7 +4,7 @@
 <form action="add_submit" method="post">
 <p>氏
 <input type="text" name="lastname"></p>
-<p>名ss
+<p>名
 <input type="text" name="firstname"></p>
 <p>生年月日
 <select name="year">

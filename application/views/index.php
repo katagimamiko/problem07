@@ -16,13 +16,13 @@
 foreach ($members as $row) {
 ?>
 <tr>
-    <td><?php echo $row['ID']; ?></td>
-    <td><a href="http://local.problem07.com/member/update/<?php echo $row['ID'] ?>" target="_blank"><?php echo $row['氏'].$row['名'].
-    "(".floor ((date('Ymd') - str_replace("-", "", $row['生年月日']))/10000).")"; ?></a></td>
-    <td><?php echo $row['出身']; ?></td>
-    <td><a href="/member/delete/<?php echo $row['ID'] ?>"accesskey=""onClick="return confirm('削除します。\nよろしいですか？');"><?php echo '削除'; ?></a></td>
-    <td><?php echo $row['登録日時']; ?></td>
-    <td><?php echo $row['更新日時']; ?></td>
+    <td><?php echo $row['id']; ?></td>
+    <td><a href="http://local.problem07.com/member/update/<?php echo $row['id'] ?>" target="_blank"><?php echo $row['last_name'].$row['first_name'].
+    "(".floor ((date('Ymd') - str_replace("-", "", $row['birthday']))/10000).")"; ?></a></td>
+    <td><?php echo $row['home']; ?></td>
+    <td><a href="/member/delete/<?php echo $row['id'] ?>"accesskey=""onClick="return confirm('削除します。\nよろしいですか？');"><?php echo '削除'; ?></a></td>
+    <td><?php echo $row['created_at']; ?></td>
+    <td><?php echo $row['changed_at']; ?></td>
     <?php echo '<br>'; ?>
 </tr>
 <?php

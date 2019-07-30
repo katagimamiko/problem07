@@ -3,8 +3,7 @@ class Member extends CI_Controller {
 
         public function index() 
         {
-            $query = $this->db->query("SELECT * FROM problem07.members WHERE 削除 = 0;");
-            $members = $query->result_array();
+            $members = $this->Member_model->getList();
             $data = [
                 'members' => $members
             ]; 
@@ -21,12 +20,12 @@ class Member extends CI_Controller {
             $firstname = $this->input->post('firstname');
             $birthday = $this->input->post('year'). '-'. $this->input->post('month'). '-'. $this->input->post('day');
             $home = $this->input->post('home');
-            $this->db->query("INSERT INTO problem07.members (氏, 名, 生年月日, 出身) VALUES ('$lastname', '$firstname', '$birthday', '$home');");  
+            $this->db->query("INSERT INTO problem07.members (last_name, first_name, birthday, home) VALUES ('$lastname', '$firstname', '$birthday', '$home');");  
             redirect('http://local.problem07.com/member/add');
         }
         public function update($id) 
         {        
-            $query = $this->db->query("select * from problem07.members where ID = {$id};");
+            $query = $this->db->query("select * from problem07.members where id = {$id};");
             $member = $query->row_array();
             $data = [
                 'id' => $id,
@@ -42,13 +41,13 @@ class Member extends CI_Controller {
             $firstname = $this->input->post('firstname');
             $birthday = $this->input->post('year'). '-'. $this->input->post('month'). '-'. $this->input->post('day');
             $home = $this->input->post('home');
-            $this->db->query("UPDATE problem07.members SET 氏 = '$lastname', 名 = '$firstname', 生年月日 = '$birthday', 出身 = '$home' WHERE ID = '$id'");
+            $this->db->query("UPDATE problem07.members SET last_name = '$lastname', first_name = '$firstname', birthday = '$birthday', home = '$home' WHERE id = '$id'");
             redirect('http://local.problem07.com/member');
         }
         public function delete($id)
         {
             $this->load->helper('url');
-            $this->db->query("UPDATE members SET 削除 = 1 WHERE ID = '{$id}';");
+            $this->db->query("UPDATE members SET deleted_at = 1 WHERE id = '{$id}';");
             redirect('http://local.problem07.com/member');              
         }
 }
