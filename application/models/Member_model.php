@@ -17,7 +17,11 @@ class Member_model extends CI_Model
     }
     public function add()
     {
-
+        $lastname = $this->input->post('lastname');
+        $firstname = $this->input->post('firstname');
+        $birthday = $this->input->post('year'). '-'. $this->input->post('month'). '-'. $this->input->post('day');
+        $home = $this->input->post('home');
+        $this->db->query("INSERT INTO problem07.members (last_name, first_name, birthday, home) VALUES ('$lastname', '$firstname', '$birthday', '$home');");  
     }
     public function update()
     {
@@ -26,7 +30,7 @@ class Member_model extends CI_Model
     } 
     public function delete()
     {
-        
+        $this->db->query("UPDATE members SET deleted_at = 1 WHERE id = '{$id}';");
     }     
 }
 ?>

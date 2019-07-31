@@ -15,18 +15,19 @@ class Member extends CI_Controller {
         }
         public function add_submit() 
         {
+            $this->Member_model->add();
             $this->load->helper('url');
-            $lastname = $this->input->post('lastname');
-            $firstname = $this->input->post('firstname');
-            $birthday = $this->input->post('year'). '-'. $this->input->post('month'). '-'. $this->input->post('day');
-            $home = $this->input->post('home');
-            $this->db->query("INSERT INTO problem07.members (last_name, first_name, birthday, home) VALUES ('$lastname', '$firstname', '$birthday', '$home');");  
+//            $lastname = $this->input->post('lastname');
+//            $firstname = $this->input->post('firstname');
+//            $birthday = $this->input->post('year'). '-'. $this->input->post('month'). '-'. $this->input->post('day');
+//            $home = $this->input->post('home');
+//            $this->db->query("INSERT INTO problem07.members (last_name, first_name, birthday, home) VALUES ('$lastname', '$firstname', '$birthday', '$home');");  
             redirect('http://local.problem07.com/member/add');
         }
         public function update($id) 
         {        
-            $query = $this->db->query("select * from problem07.members where id = {$id};");
-            $member = $query->row_array();
+//            $query = $this->db->query("select * from problem07.members where id = {$id};");
+//            $member = $query->row_array();
             $data = [
                 'id' => $id,
                 'member' => $member
@@ -47,7 +48,7 @@ class Member extends CI_Controller {
         public function delete($id)
         {
             $this->load->helper('url');
-            $this->db->query("UPDATE members SET deleted_at = 1 WHERE id = '{$id}';");
+//            $this->db->query("UPDATE members SET deleted_at = 1 WHERE id = '{$id}';");
             redirect('http://local.problem07.com/member');              
         }
 }
