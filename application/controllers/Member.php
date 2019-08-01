@@ -11,43 +11,46 @@ class Member extends CI_Controller {
         }
         public function add() 
         {
-            $this->load->view('add');
+            if ($this->input->method() == 'get') {
+                $this->load->view('add');
+            }elseif ($this->input->method() == 'post') {
+                $this->load->helper('url');
+                $lastname = $this->input->post('lastname');
+                $firstname = $this->input->post('firstname');
+                $birthday = $this->input->post('year'). '-'. $this->input->post('month'). '-'. $this->input->post('day');
+                $home = $this->input->post('home');
+                $this->Member_model->add($lastname, $firstname, $birthday, $home);
+//              $this->db->query("INSERT INTO problem07.members (last_name, first_name, birthday, home) VALUES ('$lastname', '$firstname', '$birthday', '$home');");  
+                redirect('http://local.problem07.com/member/add');                
+            }
         }
-        public function add_submit() 
-        {
-            $this->Member_model->add();
-            $this->load->helper('url');
-//            $lastname = $this->input->post('lastname');
-//            $firstname = $this->input->post('firstname');
-//            $birthday = $this->input->post('year'). '-'. $this->input->post('month'). '-'. $this->input->post('day');
-//            $home = $this->input->post('home');
-//            $this->db->query("INSERT INTO problem07.members (last_name, first_name, birthday, home) VALUES ('$lastname', '$firstname', '$birthday', '$home');");  
-            redirect('http://local.problem07.com/member/add');
-        }
-        public function update($id) 
+        public function update($id)
         {        
-//            $query = $this->db->query("select * from problem07.members where id = {$id};");
-//            $member = $query->row_array();
-            $data = [
-                'id' => $id,
-                'member' => $member
-            ];   
-            $this->load->view('update', $data);
-        }
-        public function update_submit()
-        {
-            $this->load->helper('url');
-            $id = $this->input->post('id');
-            $lastname = $this->input->post('lastname');
-            $firstname = $this->input->post('firstname');
-            $birthday = $this->input->post('year'). '-'. $this->input->post('month'). '-'. $this->input->post('day');
-            $home = $this->input->post('home');
-            $this->db->query("UPDATE problem07.members SET last_name = '$lastname', first_name = '$firstname', birthday = '$birthday', home = '$home' WHERE id = '$id'");
-            redirect('http://local.problem07.com/member');
+            if ($this->input->method() == 'get') {
+//              $query = $this->db->query("select * from problem07.members where id = {$id};");
+//              $member = $query->row_array();
+                $member = $this->Member_model->getMember($id);
+                $data = [
+                    'id' => $id,
+                    'member' => $member
+                ];   
+                $this->load->view('update', $data);
+            }elseif ($this->input->method() == 'post') {
+                $this->load->helper('url');
+                $id = $this->input->post('id');
+                $lastname = $this->input->post('lastname');
+                $firstname = $this->input->post('firstname');
+                $birthday = $this->input->post('year'). '-'. $this->input->post('month'). '-'. $this->input->post('day');
+                $home = $this->input->post('home');
+                $this->Member_model->update($id, $lastname, $firstname, $birthday, $home);
+//              $this->db->query("UPDATE problem07.members SET last_name = '$lastname', first_name = '$firstname', birthday = '$birthday', home = '$home' WHERE id = '$id'");
+                redirect('http://local.problem07.com/member');               
+            }
         }
         public function delete($id)
         {
             $this->load->helper('url');
+            $this->Member_model->delete($id);
 //            $this->db->query("UPDATE members SET deleted_at = 1 WHERE id = '{$id}';");
             redirect('http://local.problem07.com/member');              
         }

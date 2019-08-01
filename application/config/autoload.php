@@ -1,7 +1,5 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-$autoload['model'] = array('Member_model');
-
 /*
 | -------------------------------------------------------------------
 | AUTO-LOADER
@@ -132,4 +130,4 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array();
+$autoload['model'] = array('Member_model');

@@ -3,7 +3,7 @@
 </h1> 
 <body>
 <h1>社員情報更新</h1>
-<form action="http://local.problem07.com/member/update_submit/<?php echo $id ?>" method="post">
+<form action="http://local.problem07.com/member/update/<?php echo $id ?>" method="post">
     <input type="hidden" name="id" value="<?php echo $id ?>">
 <p>氏
     <input type="text" name="lastname" value="<?php echo $member['last_name'] ?>"></p>

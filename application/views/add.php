@@ -1,7 +1,7 @@
 <h1>社員情報登録画面</h1>
 <body>
 <h1>社員情報登録</h1>
-<form action="add_submit" method="post">
+<form action="add" method="post">
 <p>氏
 <input type="text" name="lastname"></p>
 <p>名
