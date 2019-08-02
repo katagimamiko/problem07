@@ -11,9 +11,11 @@ class Member extends CI_Controller {
         }
         public function add() 
         {
-            if ($this->input->method() == 'get') {
+            if ($this->form_validation->run() == FALSE) {
+                $this->input->method() == 'get'
                 $this->load->view('add');
-            }elseif ($this->input->method() == 'post') {
+            } else {
+                $this->input->method() == 'post'
                 $this->load->helper('url');
                 $lastname = $this->input->post('lastname');
                 $firstname = $this->input->post('firstname');
@@ -35,7 +37,7 @@ class Member extends CI_Controller {
                     'member' => $member
                 ];   
                 $this->load->view('update', $data);
-            }elseif ($this->input->method() == 'post') {
+            } elseif ($this->input->method() == 'post') {
                 $this->load->helper('url');
                 $id = $this->input->post('id');
                 $lastname = $this->input->post('lastname');
