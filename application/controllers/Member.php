@@ -11,11 +11,17 @@ class Member extends CI_Controller {
         }
         public function add() 
         {
+            $this->load->helper(array('form', 'url'));
+            $this->load->library('form_validation');
+            $this->form_validation->set_rules('lastname', '氏', 'required');
+            $this->form_validation->set_rules('firstname', '名', 'required');
+            $this->form_validation->set_rules('year', '年', 'required');
+            $this->form_validation->set_rules('month', '月', 'required');
+            $this->form_validation->set_rules('day', '日', 'required');
+            $this->form_validation->set_rules('home', '出身地', 'required');
             if ($this->form_validation->run() == FALSE) {
-                $this->input->method() == 'get'
                 $this->load->view('add');
             } else {
-                $this->input->method() == 'post'
                 $this->load->helper('url');
                 $lastname = $this->input->post('lastname');
                 $firstname = $this->input->post('firstname');
