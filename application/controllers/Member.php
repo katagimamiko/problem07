@@ -13,12 +13,12 @@ class Member extends CI_Controller {
         {
             $this->load->helper(array('form', 'url'));
             $this->load->library('form_validation');
-            $this->form_validation->set_rules('lastname', '氏', 'required');
-            $this->form_validation->set_rules('firstname', '名', 'required');
-            $this->form_validation->set_rules('year', '年', 'required');
-            $this->form_validation->set_rules('month', '月', 'required');
-            $this->form_validation->set_rules('day', '日', 'required');
-            $this->form_validation->set_rules('home', '出身地', 'required');
+            $this->form_validation->set_rules('lastname', '氏', 'required', array('required' => '%s は必須です。'));
+            $this->form_validation->set_rules('firstname', '名', 'required', array('required' => '%s は必須です。'));
+            $this->form_validation->set_rules('year', '年', 'required', array('required' => '%s は必須です。'));
+            $this->form_validation->set_rules('month', '月', 'required', array('required' => '%s は必須です。'));
+            $this->form_validation->set_rules('day', '日', 'required', array('required' => '%s は必須です。'));
+            $this->form_validation->set_rules('home', '出身地', 'required', array('required' => '%s は必須です。'));
             if ($this->form_validation->run() == FALSE) {
                 $this->load->view('add');
             } else {
