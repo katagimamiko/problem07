@@ -33,8 +33,16 @@ class Member extends CI_Controller {
             }
         }
         public function update($id)
-        {        
-            if ($this->input->method() == 'get') {
+        {
+            $this->load->helper(array('form', 'url'));
+            $this->load->library('form_validation');
+            $this->form_validation->set_rules('lastname', '氏', 'required', array('required' => '%s は必須です。'));
+            $this->form_validation->set_rules('firstname', '名', 'required', array('required' => '%s は必須です。'));
+            $this->form_validation->set_rules('year', '年', 'required', array('required' => '%s は必須です。'));
+            $this->form_validation->set_rules('month', '月', 'required', array('required' => '%s は必須です。'));
+            $this->form_validation->set_rules('day', '日', 'required', array('required' => '%s は必須です。'));
+            $this->form_validation->set_rules('home', '出身地', 'required', array('required' => '%s は必須です。'));
+            if ($this->form_validation->run() == FALSE) {
 //              $query = $this->db->query("select * from problem07.members where id = {$id};");
 //              $member = $query->row_array();
                 $member = $this->Member_model->getMember($id);
@@ -43,7 +51,7 @@ class Member extends CI_Controller {
                     'member' => $member
                 ];   
                 $this->load->view('update', $data);
-            } elseif ($this->input->method() == 'post') {
+            } else {
                 $this->load->helper('url');
                 $id = $this->input->post('id');
                 $lastname = $this->input->post('lastname');

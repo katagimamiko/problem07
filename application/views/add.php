@@ -11,19 +11,19 @@
 <select name="year">
     <option value="">--</option>
     <?php foreach(range(1920,date('Y')) as $year): ?>
-    <option value="<?=$year?>"<?php if($year==date){echo 'selected';}?>><?=$year?></option>
+    <option value="<?php echo $year ?>" <?php if ($year == set_value('year')) { echo 'selected'; }?>><?php echo $year ?></option>
     <?php endforeach; ?>
 </select>年  
 <select name="month">
     <option value="">--</option>
     <?php foreach(range(1,12) as $month): ?>
-    <option value="<?=str_pad($month,2,0,STR_PAD_LEFT)?>" selected="<?php echo set_value('month'); ?>"><?=$month?></option>
+    <option value="<?=str_pad($month,2,0,STR_PAD_LEFT)?>" <?php if ($month == set_value('month')) { echo 'selected'; }?>><?=$month?></option>
     <?php endforeach; ?>
 </select>月
 <select name="day">
     <option value="">--</option>
     <?php foreach(range(1,31) as $day): ?>
-    <option value="<?=str_pad($day,2,0,STR_PAD_LEFT)?>" selected="<?php echo set_value('day'); ?>"><?=$day?></option>
+    <option value="<?=str_pad($day,2,0,STR_PAD_LEFT)?>" <?php if ($day == set_value('day')) { echo 'selected'; } ?>><?=$day?></option>
     <?php endforeach; ?>
 </select>日
 <p>出身地
