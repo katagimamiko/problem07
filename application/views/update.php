@@ -3,6 +3,7 @@
 </h1> 
 <body>
 <h1>社員情報更新</h1>
+<?php echo validation_errors(); ?>
 <form action="http://local.problem07.com/member/update/<?php echo $id ?>" method="post">
     <input type="hidden" name="id" value="<?php echo $id ?>">
 <p>氏
