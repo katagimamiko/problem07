@@ -11,6 +11,10 @@ class Member extends CI_Controller {
         }
         public function add() 
         {
+            if ($_SESSION['is_login'] !== true) {
+                echo "ログイン失敗";
+                exit;
+            }
             $this->load->helper(array('form', 'url'));
             $this->load->library('form_validation');
             $this->form_validation->set_rules('lastname', '氏', 'required', array('required' => '%s は必須です。'));
@@ -69,6 +73,17 @@ class Member extends CI_Controller {
             $this->Member_model->delete($id);
 //            $this->db->query("UPDATE members SET deleted_at = 1 WHERE id = '{$id}';");
             redirect('http://local.problem07.com/member');              
+        }
+//        public function __construct()
+//        {
+//            parent::__construct();
+//        }
+        public function login()
+        {
+            session_start();
+            $this->load->library('session');
+            $_SESSION['is_login'] = true;
+            redirect('member/add');
         }
 }
 
