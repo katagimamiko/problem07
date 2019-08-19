@@ -1,6 +1,12 @@
 <?php
 class Member extends CI_Controller {
-
+        public function __construct()
+        {
+            parent::__construct();
+            if ($_SESSION['is_login'] !== true) {
+                redirect('http://local.problem07.com/admin/login/index');
+            }         
+        }
         public function index() 
         {
             $members = $this->Member_model->getList();
@@ -11,12 +17,6 @@ class Member extends CI_Controller {
         }
         public function add() 
         {
-            if ($_SESSION['is_login'] !== true) {
-                echo "ログイン失敗";
-                exit;
-            }
-            $this->load->helper(array('form', 'url'));
-            $this->load->library('form_validation');
             $this->form_validation->set_rules('lastname', '氏', 'required', array('required' => '%s は必須です。'));
             $this->form_validation->set_rules('firstname', '名', 'required', array('required' => '%s は必須です。'));
             $this->form_validation->set_rules('year', '年', 'required', array('required' => '%s は必須です。'));
@@ -26,7 +26,6 @@ class Member extends CI_Controller {
             if ($this->form_validation->run() == FALSE) {
                 $this->load->view('add');
             } else {
-                $this->load->helper('url');
                 $lastname = $this->input->post('lastname');
                 $firstname = $this->input->post('firstname');
                 $birthday = $this->input->post('year'). '-'. $this->input->post('month'). '-'. $this->input->post('day');
@@ -38,8 +37,6 @@ class Member extends CI_Controller {
         }
         public function update($id)
         {
-            $this->load->helper(array('form', 'url'));
-            $this->load->library('form_validation');
             $this->form_validation->set_rules('lastname', '氏', 'required', array('required' => '%s は必須です。'));
             $this->form_validation->set_rules('firstname', '名', 'required', array('required' => '%s は必須です。'));
             $this->form_validation->set_rules('year', '年', 'required', array('required' => '%s は必須です。'));
@@ -56,7 +53,6 @@ class Member extends CI_Controller {
                 ];   
                 $this->load->view('update', $data);
             } else {
-                $this->load->helper('url');
                 $id = $this->input->post('id');
                 $lastname = $this->input->post('lastname');
                 $firstname = $this->input->post('firstname');
@@ -69,19 +65,12 @@ class Member extends CI_Controller {
         }
         public function delete($id)
         {
-            $this->load->helper('url');
             $this->Member_model->delete($id);
 //            $this->db->query("UPDATE members SET deleted_at = 1 WHERE id = '{$id}';");
             redirect('http://local.problem07.com/member');              
         }
-//        public function __construct()
-//        {
-//            parent::__construct();
-//        }
         public function login()
         {
-            $this->load->helper('url');
-            $this->load->library('session');
             $_SESSION['is_login'] = true;
             redirect('http://local.problem07.com/member/add');
         }

@@ -1,7 +1,7 @@
 <h1>ログイン画面</h1>
 <body>
 <?php echo validation_errors(); ?>
-<form action="index" method="post">
+<form action="login" method="post">
 <p>メールアドレス
 <input type="text" name="mail" value="<?php echo set_value('mail'); ?>"></p>
 <p>パスワード

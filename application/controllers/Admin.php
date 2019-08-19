@@ -1,6 +1,6 @@
 <?php
-class login extends CI_Controller {
-    public function index()
+class admin extends CI_Controller {
+    public function login()
     {
         $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
