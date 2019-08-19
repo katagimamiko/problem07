@@ -6,7 +6,7 @@ class Admin_model extends CI_Model
         parent::__construct();
     }
 
-    public function login($mail, $password)
+    public function index($mail, $password)
     {
         $this->db->query("INSERT INTO problem07.admins (mail, password) VALUES ('$mail', '$password');");  
     }

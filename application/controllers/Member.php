@@ -80,10 +80,10 @@ class Member extends CI_Controller {
 //        }
         public function login()
         {
-            session_start();
+            $this->load->helper('url');
             $this->load->library('session');
             $_SESSION['is_login'] = true;
-            redirect('member/add');
+            redirect('http://local.problem07.com/member/add');
         }
 }
 
