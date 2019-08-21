@@ -10,6 +10,11 @@ class Admin_model extends CI_Model
     {
         $this->db->query("INSERT INTO problem07.admins (mail, password) VALUES ('$mail', '$password');");  
     }
+    public function getByMail($mail)
+    {
+        $query = $this->db->query("select * from problem07.admins where id = {$mail};");
+        return $query->row_array();  
+    }    
 }
 ?>
 

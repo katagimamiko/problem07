@@ -16,6 +16,17 @@ class admin extends CI_Controller {
             redirect('http://local.problem07.com/menber');               
         }
     }
+    public function index($mail)
+    {
+        $admin = $this->Admin_model->getByMail($mail);
+        $date = [
+            'mail' => $mail,
+            'admin' => $admin
+        ];
+        $this->load->view('index', $data);
+
+
+    }
 }
 
 
